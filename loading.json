@@ -1,0 +1,87 @@
+1..install
+npm install --save react-native-progress-circle
+
+2..import
+import ProgressCircle from 'react-native-progress-circle'
+
+3.
+
+import React, {useEffect, useState} from 'react';
+import {Alert, Button, Text, View} from "react-native";
+import ProgressCircle from 'react-native-progress-circle'
+const App = () => {
+    const [value,setValue]=useState(0);
+    const[text,setText]=useState("Lodding...............")
+useEffect(()=>{
+    progress();
+},[])
+    let i=0;
+    const progress=()=>{
+
+
+              setTimeout(function(){
+                i++;
+                  setValue(i);
+                  if(i<100)
+                  {
+                      if(i>0 && i<97)
+                      {
+                          if(i%2==0)
+                          {
+                              setText("Extracting Files....")
+                          }
+                          else
+                          {
+
+                              setText("Looding File......")
+                          }
+
+                      }
+                      else
+                      {
+                          setText("Looding sucessfuly.....")
+
+                      }
+                      progress();
+                  }
+                  if(i==100)
+                  {
+                      Alert.alert("SuccessFully Loaded")
+                  }
+              }, 200);
+
+
+    }
+    return (
+
+        <View  >
+
+            <View  style={{marginLeft:110,marginTop:270}}>
+
+                <ProgressCircle
+                    percent={value}
+                    radius={70}
+                    borderWidth={8}
+                    color="#3399FF"
+                    shadowColor="#999"
+                    bgColor="#fff"
+
+                >
+                    <Text style={{ fontSize: 18 }}>{value+"%"}</Text>
+
+                </ProgressCircle>
+                <Text style={{marginTop:30}}>{text}</Text>
+            </View>
+            <View>
+
+            </View>
+
+
+
+        </View>
+    );
+};
+
+export default App;
+
+
